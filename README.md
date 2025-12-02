@@ -15,7 +15,6 @@ The project uses FastAPI, SQLModel, SQLite, and Pytest to demonstrate a clean CR
 ✔ Full test suite using **pytest + TestClient**  
 ✔ CLI with Typer (`initdb`, `seed-demo`, `load-csv`)  
 
-🛠 Project Structure
 Movieland/
  ├── app/
  │   ├── main.py
@@ -27,16 +26,19 @@ Movieland/
  ├── tests/
  │   └── test_movies.py
  ├── cli.py
- ├── pyproject.toml
  ├── Dockerfile
- └── README.md
+ ├── README.md
+ ├── pyproject.toml
+ └── uv.lock
 
 📦 Setup (Local Development):
 
 1️⃣ Install dependencies
+
 uv sync
 
 2️⃣ Run the API
+
 uv run uvicorn app.main:app --reload
 
 API will be available at:
@@ -48,31 +50,46 @@ Movies list → http://localhost:8000/movies
 Health check → http://localhost:8000/health
 
 🧪 Running Tests
+
 uv run pytest
 
 You should get output similar to:
+
 8 passed in x.xxs
 
 🐳 Docker Support
+
 Build image:
+
 docker build -t movieland .
 
 Run container:
+
 docker run -p 8000:8000 movieland
 
 Container will serve:
+
 http://localhost:8000
+
 http://localhost:8000/docs
+
 http://localhost:8000/health
+
 
 CLI Commands
 
 Initialize database:
+
 uv run python cli.py initdb
 
+
 Seed demo movies:
+
 uv run python cli.py seed-demo
 
+
 Import from CSV:
+
 uv run python cli.py load-csv data/tmdb_5000_movies.csv --limit 100
+
 (Use --limit 0 to import the entire file.)
