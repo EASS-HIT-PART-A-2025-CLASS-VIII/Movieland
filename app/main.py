@@ -20,13 +20,13 @@ app = FastAPI(title="Movieland API", lifespan=lifespan)
 def health() -> dict[str, str]:
     return {"status": "ok", "app": "Movieland API"}
 
-# GET /movies - מחזיר את כל הסרטים
+# returns all the movies in the DB - GET /movies
 @app.get("/movies", response_model=List[Movie])
 def list_movies(session: Session = Depends(get_session)) -> List[Movie]:
     movies = session.exec(select(Movie)).all()
     return movies
 
-# GET /movies/{movie_id} - קבלת סרט בודד לפי ID
+#Brings movie based on it's ID - GET /movies/{movie_id}
 @app.get("/movies/{movie_id}", response_model=Movie)
 def get_movie(
     movie_id: int,
@@ -38,7 +38,7 @@ def get_movie(
     return movie
 
 
-# POST /movies - יוצר סרט חדש
+#Makes a new movie - POST /movies
 @app.post("/movies", response_model=Movie, status_code=201)
 def create_movie(
     movie: MovieCreate,
@@ -52,7 +52,7 @@ def create_movie(
     return db_movie
 
 
-# PUT /movies/{movie_id} - מעדכן סרט קיים
+#Updates movie{id} - PUT /movies/{movie_id}
 @app.put("/movies/{movie_id}", response_model=Movie)
 def update_movie(
     movie_id: int,
@@ -60,7 +60,7 @@ def update_movie(
     session: Session = Depends(get_session),
 ) -> Movie:
     """
-    מעדכן סרט קיים לפי ה-id.
+    Update movie{id}
     """
     db_movie = session.get(Movie, movie_id)
     if db_movie is None:
@@ -75,15 +75,14 @@ def update_movie(
     session.refresh(db_movie)
     return db_movie
 
-
-# DELETE /movies/{movie_id} - מוחק סרט
+#delets movie{id} - DELETE /movies/{movie_id}
 @app.delete("/movies/{movie_id}", status_code=204)
 def delete_movie(
     movie_id: int,
     session: Session = Depends(get_session),
 ) -> None:
     """
-    מוחק סרט לפי id. אם לא קיים → 404.
+    Delets movie{id}, returns 404 if it doesn't exist.
     """
     db_movie = session.get(Movie, movie_id)
     if db_movie is None:

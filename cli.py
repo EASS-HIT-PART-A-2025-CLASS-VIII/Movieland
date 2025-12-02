@@ -10,10 +10,6 @@ from app.models import Movie
 
 app = typer.Typer(help="Command line tools for Movieland API.")
 
-
-# -------------------------------
-# initdb - יצירת מסד נתונים
-# -------------------------------
 @app.command()
 def initdb() -> None:
     """
@@ -22,10 +18,6 @@ def initdb() -> None:
     create_db_and_tables()
     typer.echo("✅ Database and tables created successfully.")
 
-
-# -------------------------------
-# seed_demo - הזרעה בסיסית
-# -------------------------------
 @app.command()
 def seed_demo() -> None:
     """
@@ -47,10 +39,6 @@ def seed_demo() -> None:
 
     typer.echo(f"✅ Inserted {len(demo_movies)} demo movies.")
 
-
-# -------------------------------
-# load_csv - טעינת CSV
-# -------------------------------
 @app.command()
 def load_csv(
     csv_path: Path = typer.Argument(
@@ -115,10 +103,6 @@ def load_csv(
 
     typer.echo(f"✅ Imported {len(movies_to_insert)} movies from CSV.")
 
-
-# -------------------------------
-# Helper function - לא נקראת ישירות
-# -------------------------------
 def _insert_movies(session: Session, movies: list[tuple[str, int, Optional[str]]]) -> None:
     """
     Internal helper to insert list of (title, year, description) tuples.
@@ -127,9 +111,5 @@ def _insert_movies(session: Session, movies: list[tuple[str, int, Optional[str]]
         session.add(Movie(title=title, year=year, description=description))
     session.commit()
 
-
-# -------------------------------
-# Entry point
-# -------------------------------
 if __name__ == "__main__":
     app()
