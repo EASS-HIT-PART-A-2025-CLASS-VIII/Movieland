@@ -15,27 +15,6 @@ The project uses FastAPI, SQLModel, SQLite, and Pytest to demonstrate a clean CR
 ✔ Full test suite using **pytest + TestClient**  
 ✔ CLI with Typer (`initdb`, `seed-demo`, `load-csv`)  
 
-Movieland/
-|──app/
-|
-|
-
-Movieland/
- ├── app/
- │   ├── main.py
- │   ├── models.py
- │   ├── database.py
- │   └── __init__.py
- ├── data/
- │   └── tmdb_5000_movies.csv
- ├── tests/
- │   └── test_movies.py
- ├── cli.py
- ├── Dockerfile
- ├── README.md
- ├── pyproject.toml
- └── uv.lock
-
 📦 Setup (Local Development):
 
 1️⃣ Install dependencies
