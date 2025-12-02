@@ -16,6 +16,11 @@ The project uses FastAPI, SQLModel, SQLite, and Pytest to demonstrate a clean CR
 ✔ CLI with Typer (`initdb`, `seed-demo`, `load-csv`)  
 
 Movieland/
+|──app/
+|
+|
+
+Movieland/
  ├── app/
  │   ├── main.py
  │   ├── models.py
