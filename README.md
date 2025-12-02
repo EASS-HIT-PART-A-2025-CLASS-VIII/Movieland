@@ -40,8 +40,11 @@ uv sync
 uv run uvicorn app.main:app --reload
 
 API will be available at:
+
 Swagger UI → http://localhost:8000/docs
+
 Movies list → http://localhost:8000/movies
+
 Health check → http://localhost:8000/health
 
 🧪 Running Tests
