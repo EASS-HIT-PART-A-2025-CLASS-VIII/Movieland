@@ -1,21 +1,24 @@
-📘 Movieland – FastAPI Movie Catalogue
+🎬 Movieland – FastAPI Movie Catalogue
 
 Movieland is a tiny movie catalogue API built as part of EX1 – FastAPI Foundations.
-The project uses FastAPI, SQLModel, SQLite, and Pytest to demonstrate a clean CRUD API with a simple data layer.
+The project uses FastAPI, SQLModel, SQLite, Pytest, Typer, and Docker to demonstrate a clean CRUD API with a simple data layer.
 
-🚀 Features
+🌟 Features
 
-✔ `GET /movies` – List all movies  
-✔ `POST /movies` – Create a new movie  
-✔ `GET /movies/{id}` – Fetch a single movie  
-✔ `PUT /movies/{id}` – Update a movie  
-✔ `DELETE /movies/{id}` – Delete a movie  
-✔ `GET /health` – Service health check  
-✔ Year validation (1900–2100)  
-✔ **Bonus:** CLI with Typer (`initdb`, `seed-demo`, `load-csv`)  
-✔ SQLite database stored at: `data/movies.db`  
+✔ GET /movies – List all movies
+✔ POST /movies – Create a new movie
+✔ GET /movies/{id} – Fetch a single movie
+✔ PUT /movies/{id} – Update a movie
+✔ DELETE /movies/{id} – Delete a movie
+✔ GET /health – Service health check
 
-🛠 Project Structure
+✔ Year validation (1900–2100)
+
+✔ Bonus: CLI with Typer (initdb, seed-demo, load-csv)
+
+✔ SQLite database stored at: data/movies.db
+
+📁 Project Structure
 Movieland/
  ├── app/
  │   ├── main.py
@@ -27,28 +30,34 @@ Movieland/
  ├── tests/
  │   └── test_movies.py
  ├── cli.py
- ├── pyproject.toml
  ├── Dockerfile
- └── README.md
+ ├── README.md
+ ├── pyproject.toml
+ └── uv.lock
 
-📦 Setup (Local Development):
-
+🛠 Setup (Local Development)
 1️⃣ Install dependencies
 uv sync
 
 2️⃣ Run the API
 uv run uvicorn app.main:app --reload
 
-API will be available at:
+
+API available at:
+
 Swagger UI → http://localhost:8000/docs
+
 Movies list → http://localhost:8000/movies
+
 Health check → http://localhost:8000/health
 
 🧪 Running Tests
 uv run pytest
 
-You should get output similar to:
-8 passed in x.xxs
+
+Expected output:
+
+8 passed in X.XXs
 
 🐳 Docker Support
 Build image:
@@ -57,13 +66,16 @@ docker build -t movieland .
 Run container:
 docker run -p 8000:8000 movieland
 
+
 Container will serve:
+
 http://localhost:8000
+
 http://localhost:8000/docs
+
 http://localhost:8000/health
 
 🎁 Bonus – CLI Commands
-
 Initialize database:
 uv run python cli.py initdb
 
@@ -72,4 +84,6 @@ uv run python cli.py seed-demo
 
 Import from CSV:
 uv run python cli.py load-csv data/tmdb_5000_movies.csv --limit 100
-(Use --limit 0 to import the entire file.)
+
+
+(Use --limit 0 to import the entire file)
